@@ -1,12 +1,12 @@
-const app = require("./app");
+const app = require("./backend/app");
 const cloudinary = require("cloudinary");
 const path = require('path');
-const connectDatabase = require("./config/database");
+const connectDatabase = require("./backend/config/database");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
-  console.log(`Error: ${err.message}`);
-  console.log(`Shutting down the server due to Uncaught Exception`);
+  //console.log(`Error: ${err.message}`);
+  //console.log(`Shutting down the server due to Uncaught Exception`);
   process.exit(1);
 });
 
@@ -25,20 +25,20 @@ cloudinary.config({
 });
 
 //static files
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(path.join(__dirname, './frontend/build')));
 
 app.get("*", function(req, res){
-  res.sendFile(path.join(__dirname, "..frontend/build/index.html"));
+  res.sendFile(path.join(__dirname, ".frontend/build/index.html"));
 });
 
 const server = app.listen(process.env.PORT, () => {
-  console.log(`Server is working on http://localhost:${process.env.PORT}`);
+  //console.log(`Server is working on http://localhost:${process.env.PORT}`);
 });
 
 // Unhandled Promise Rejection
 process.on("unhandledRejection", (err) => {
-  console.log(`Error: ${err.message}`);
-  console.log(`Shutting down the server due to Unhandled Promise Rejection`);
+  //console.log(`Error: ${err.message}`);
+  //console.log(`Shutting down the server due to Unhandled Promise Rejection`);
 
   server.close(() => {
     process.exit(1);
