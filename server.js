@@ -25,11 +25,11 @@ cloudinary.config({
 });
 
 //static files
-app.use(express.static(path.join(__dirname, './frontend/build')));
+// app.use(express.static(path.join(__dirname, './frontend/build')));
 
-app.get("*", function(req, res){
-  res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
-});
+// app.get("*", function(req, res){
+//   res.sendFile(path.join(__dirname, ".frontend/build/index.html"));
+// });
 
 const server = app.listen(process.env.PORT, () => {
   //console.log(`Server is working on http://localhost:${process.env.PORT}`);
